@@ -1,0 +1,10 @@
+@extends('layouts.app')
+@section('content')
+<detail-product
+  :home="{{json_encode(url('/'))}}" 
+  :score="{{$score}}"
+  :product="{{$product}}"
+  :storage="{{json_encode(asset('storage/'))}}"
+>
+</detail-product>
+@endsection

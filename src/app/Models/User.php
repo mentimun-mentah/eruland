@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'token',
     ];
 
     /**
@@ -40,4 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function shipping_subdistrict(){
+        return $this->belongsTo('App\Models\ShippingSubdistrict');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Models\Product');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order');
+    }
+
+    public function order_items(){
+        return $this->hasMany('App\Models\OrderItem');
+    }
+
+    public function withdrawals(){
+        return $this->hasMany('App\Models\Withdrawal');
+    }
+
 }
