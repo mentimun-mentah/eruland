@@ -63,8 +63,6 @@ Route::prefix('products')->group(function () {
 });
 
 Route::prefix('carts')->group(function () {
-  Route::get('/my-cart', [App\Http\Controllers\CartController::class,'my_cart']);
-  Route::post('/store-cart', [App\Http\Controllers\CartController::class,'storeCart']);
   Route::put('/increase-cart/{id}', [App\Http\Controllers\CartController::class,'increaseCart']);
   Route::put('/decrease-cart/{id}', [App\Http\Controllers\CartController::class,'decreaseCart']);
   Route::put('/input-cart/{id}', [App\Http\Controllers\CartController::class,'inputCart']);
@@ -73,6 +71,8 @@ Route::prefix('carts')->group(function () {
   Route::get('/get-my-cart', function() { return Cart::instance('cart')->content();});
   Route::get('/get-total-cart', function() { return Cart::instance('cart')->total();});
   Route::middleware(['auth'])->group(function () {
+    Route::get('/my-cart', [App\Http\Controllers\CartController::class,'my_cart']);
+    Route::post('/store-cart', [App\Http\Controllers\CartController::class,'storeCart']);
     Route::post('/pay-now', [App\Http\Controllers\CartController::class,'storeCart']);
   });
 });

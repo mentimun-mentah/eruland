@@ -6757,7 +6757,7 @@ __webpack_require__.r(__webpack_exports__);
     storeCart: function storeCart() {
       var _this3 = this;
 
-      if (this.product.user_id == this.user.id) {
+      if (this.user && this.product.user_id == this.user.id) {
         this.$toast.error("Upps, penjual tidak bisa membeli barang sendiri :)");
         return;
       }
@@ -6769,15 +6769,19 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/carts/store-cart', req).then(function (res) {
         if (res.data.status == "Success add product to cart") location.reload();
       })["catch"](function (err) {
-        var first = Object.keys(err.response.data.errors);
+        if (err.response.status === 401) {
+          location.replace(_this3.home + '/login');
+        } else {
+          var first = Object.keys(err.response.data.errors);
 
-        _this3.$toast.error(err.response.data.errors[first][0]);
+          _this3.$toast.error(err.response.data.errors[first][0]);
+        }
       });
     },
     payNow: function payNow() {
       var _this4 = this;
 
-      if (this.product.user_id == this.user.id) {
+      if (this.user && this.product.user_id == this.user.id) {
         this.$toast.error("Upps, penjual tidak bisa membeli barang sendiri :)");
         return;
       }

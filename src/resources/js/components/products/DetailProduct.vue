@@ -366,7 +366,7 @@ export default {
       }
     },
     storeCart(){
-      if(this.product.user_id == this.user.id){
+      if(this.user && this.product.user_id == this.user.id){
         this.$toast.error("Upps, penjual tidak bisa membeli barang sendiri :)")
         return
       }
@@ -379,12 +379,16 @@ export default {
       axios.post('/carts/store-cart',req).then(res => {
         if(res.data.status == "Success add product to cart") location.reload()
       }).catch(err => {
-        let first = Object.keys(err.response.data.errors)
-        this.$toast.error(err.response.data.errors[first][0]);
+        if(err.response.status === 401){
+          location.replace(this.home + '/login');
+        }else{
+          let first = Object.keys(err.response.data.errors)
+          this.$toast.error(err.response.data.errors[first][0]);
+        }
       })
     },
     payNow(){
-      if(this.product.user_id == this.user.id){
+      if(this.user && this.product.user_id == this.user.id){
         this.$toast.error("Upps, penjual tidak bisa membeli barang sendiri :)")
         return
       }
