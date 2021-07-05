@@ -62,11 +62,6 @@
                       <p>Kategori</p>
                       <p class="text-capitalize">{{product.category}}</p>
                     </div>
-
-                    <div class="info-item">
-                      <p>Kondisi</p>
-                      <p>Baru</p>
-                    </div>
                   </div>
                 </div>
               </div>

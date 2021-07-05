@@ -409,6 +409,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="47485c17-03ec-46ce-81ac-c5016092870f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     @include('sweetalert::alert')
   </body>
